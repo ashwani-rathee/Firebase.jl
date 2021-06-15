@@ -10,9 +10,9 @@ Pkg.clone("git://example.com/path/to/Package.jl.git")
 
 # TODO
 Lot of work in these section:
-- [] Firebase Authentication
-- [] Cloud Firestore
-- [] Realtime Database
+- [ ] Firebase Authentication
+- [ ] Cloud Firestore
+- [ ] Realtime Database
 
 # Cloud Firestore
 
