@@ -16,8 +16,8 @@ end
 
 function realdb_get(url)
     # println(BASE_URL)
-    # final_url = "$BASE_URL$url.json"
-    # println(final_url)
+    final_url = "$BASE_URL$url.json"
+    println("FINAL URL:",final_url)
     res = HTTP.get(final_url)
     if res.status == 200
         println("GET successful")
@@ -29,7 +29,7 @@ end
 
 function realdb_post(url,body = """{"name": "real_db_test"}""")
     final_url = "$BASE_URL$url.json"
-    println(final_url)
+    println("FINAL URL:",final_url)
     res = HTTP.post(final_url,"" ,body)
     if res.status == 200
         println("POST successful")
@@ -41,8 +41,8 @@ end
 
 function realdb_delete(url,body = """{"name": "real_db_test"}""")
     final_url = "$BASE_URL$url.json"
-    println(final_url)
-    res = HTTP.delete(final,"" ,body)
+    println("FINAL URL:",final_url)
+    res = HTTP.delete(final_url,"" ,body)
     if res.status == 200
         println("DELETE successful")
     else
@@ -53,8 +53,8 @@ end
 
 function realdb_put(url,body = """{"name": "real_db_test"}""")
     final_url = "$BASE_URL$url.json"
-    println(final_url)
-    res = HTTP.put(final,body)
+    println("FINAL URL:",final_url)
+    res = HTTP.put(final_url,body)
     if res.status == 200
         println("PUT successful")
     else
