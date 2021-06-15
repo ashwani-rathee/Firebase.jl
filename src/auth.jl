@@ -13,4 +13,4 @@ body = """
     returnSecureToken: true
 }
 """
-HTTP.post("https://identitytoolkit.googleapis.com/v1/accounts:signUp",header,body)
+HTTP.post("https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAEeSloxz3EtXTm73EdSIWY_WRVPF51hhI",header,body)
