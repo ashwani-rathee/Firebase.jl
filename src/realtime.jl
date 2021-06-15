@@ -1,5 +1,5 @@
 using Base: final_shred!
-using HTTP,JSON,Firebase
+using HTTP, JSON, Firebase
 # Firebase Auth  backend a REST API
 
 export readdbinit, readldb_get, realdb_post, realdb_delete, realdb_put
@@ -17,7 +17,7 @@ end
 function realdb_get(url)
     # println(BASE_URL)
     final_url = "$BASE_URL$url.json"
-    println("FINAL URL:",final_url)
+    println("FINAL URL:", final_url)
     res = HTTP.get(final_url)
     if res.status == 200
         println("GET successful")
@@ -27,10 +27,10 @@ function realdb_get(url)
     JSON.parse(String(res.body))
 end
 
-function realdb_post(url,body = """{"name": "real_db_test"}""")
+function realdb_post(url, body = """{"name": "real_db_test"}""")
     final_url = "$BASE_URL$url.json"
-    println("FINAL URL:",final_url)
-    res = HTTP.post(final_url,"" ,body)
+    println("FINAL URL:", final_url)
+    res = HTTP.post(final_url, "", body)
     if res.status == 200
         println("POST successful")
     else
@@ -39,10 +39,10 @@ function realdb_post(url,body = """{"name": "real_db_test"}""")
     JSON.parse(String(res.body))
 end
 
-function realdb_delete(url,body = """{"name": "real_db_test"}""")
+function realdb_delete(url, body = """{"name": "real_db_test"}""")
     final_url = "$BASE_URL$url.json"
-    println("FINAL URL:",final_url)
-    res = HTTP.delete(final_url,"" ,body)
+    println("FINAL URL:", final_url)
+    res = HTTP.delete(final_url, "", body)
     if res.status == 200
         println("DELETE successful")
     else
@@ -51,10 +51,10 @@ function realdb_delete(url,body = """{"name": "real_db_test"}""")
     JSON.parse(String(res.body))
 end
 
-function realdb_put(url,body = """{"name": "real_db_test"}""")
+function realdb_put(url, body = """{"name": "real_db_test"}""")
     final_url = "$BASE_URL$url.json"
-    println("FINAL URL:",final_url)
-    res = HTTP.put(final_url,body)
+    println("FINAL URL:", final_url)
+    res = HTTP.put(final_url, body)
     if res.status == 200
         println("PUT successful")
     else
@@ -63,6 +63,18 @@ function realdb_put(url,body = """{"name": "real_db_test"}""")
     JSON.parse(String(res.body))
 end
 
+# 'https://[PROJECT_ID].firebaseio/.json?download=myfilename.txt'
+function readdb_download(url, filename = "$url")
+    final_url = "$BASE_URL$url.json?download=$filename.txt"
+    println("FINAL URL:", final_url)
+    res = HTTP.get(final_url)
+    if res.status == 200
+        println("GET successful")
+    else
+        println("GET errored")
+    end
+    JSON.parse(String(res.body))
+end
 # header = Dict(
 #     "Authorization" =>
 #         "Bearer ya29.c.Kp8BAwh19dsnHN7yPkhlb3toQleIQuAQ94YlV-aXs6ijDEvEKtvKmoNiXw9Fg7u-EjpHjusuu_k9nIaW7tFohhW97fPTx7G0KowT-R0nwI52XdvHrG-TrRAZOjC38eiu_eaPgXTh2wxHUDH-sVPpvA5Yzv8DgCoCRTUboxa3ajDVhRiyvM7uOiFcR27k6eoMrOmk_EBTabpODRLhtIeKG10O",
