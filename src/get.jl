@@ -9,10 +9,7 @@ function get_singlepage(documentpath; pagesize = 300, pagetoken::String = "")
     project_id = projectid()
     firestore_path = "/projects/$project_id/databases/(default)/documents"
     url = "$base_url$firestore_path/$documentpath"
-    println(url)
     query = Dict{String,Any}("pageSize" => pagesize)
-    println(query)
-    println(headers)
     if !isempty(pagetoken)
         query["pageToken"] = pagetoken
     end

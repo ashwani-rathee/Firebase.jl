@@ -21,7 +21,6 @@ function get(path...)
     @show "Firestore.get", path
     
     full_path = join(path,'/')
-    println("Full Path:", full_path)
     length(path) % 2 == 0 && return convert_map(get_document(full_path))
     map(convert_map,get_collection(full_path))
 end
