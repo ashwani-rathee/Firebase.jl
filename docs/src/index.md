@@ -6,7 +6,7 @@ Julia's Interface to Firebase REST API
 
 ```julia
 using Pkg
-Pkg.clone("git://example.com/path/to/Package.jl.git")
+Pkg.clone("https://github.com/ashwani-rathee/Firebase.jl.git")
 ```
 
 # TODO

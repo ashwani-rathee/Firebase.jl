@@ -6,6 +6,6 @@ makedocs(sitename="Documentation",
         pages=[
             "Home" => "index.md"],
             format = Documenter.HTML(
-                prettyurls = get(ENV, "CI", nothing) == "true"
+                prettyurls = Base.get(ENV, "CI", nothing) == "true"
             ))
 deploydocs(repo = "github.com/ashwani-rathee/Firebase.jl")

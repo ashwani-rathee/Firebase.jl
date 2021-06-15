@@ -4,10 +4,11 @@ module Firebase
 include("token.jl")
 include("get.jl")
 include("convert.jl")
+include("realtime.jl")
 # include("auth.jl")
 
 # Imported packages
-import HTTP, GoogleCloud, JSON
+using HTTP, GoogleCloud, JSON
 
 # Exported Functions
 export greet, get
@@ -17,5 +18,20 @@ export convert_field
 export convert_timestamp
 export convert_map
 export convert_array
+
+# Firebase database related
+export firestore_batchget
+export firestore_createdoc
+export firestore_deletedoc
+export firestore_getcollectionids
+export firestore_getdoclist
+
+# Realtime database related
+export readdbinit
+export readldb_get
+export realdb_post
+export realdb_delete
+export realdb_put
+
 
 end # module

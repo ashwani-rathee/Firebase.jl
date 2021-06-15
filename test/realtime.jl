@@ -76,25 +76,25 @@ using Test
 
     res = HTTP.delete("https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app/firebase_test/firebase_post/input/$(string).json","" ,body)
 
-    body = """
-           {
-                 "Name": "Sutas",
-                 "orderAmount": 1220,
-                 "price": "7.5 TL",
-                 "stockAmount": 350,
-                 "img": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.idagross.com%2Fsutas-yarim-yagli-sut-1-litre&psig=AOvVaw1xDw-JiAKzUQlZ33PwVI-K&ust=1595330986772000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiXppnd2-oCFQAAAAAdAAAAABAD",
-                 "categoryId": "-MCfyFwdqEa0ZyXkN6Y0",
-                 "supplierId": "-MCfyQ6D1f_wy8aIaQqs"
-           }"""
-    res = HTTP.post(
-        "https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app/firebase_test/firebase_post/input.json",
-        "",
-        body,
-    )
-    string = JSON.parse(String(res.body))["name"]
-    expected = HTTP.get(
-        "https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app/firebase_test/firebase_post/input/$(string).json",
-    )
-    res = HTTP.put("https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app/firebase_test/firebase_post/input/$(string).json",body)
+    # body = """
+    #        {
+    #              "Name": "Sutas",
+    #              "orderAmount": 1220,
+    #              "price": "7.5 TL",
+    #              "stockAmount": 350,
+    #              "img": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.idagross.com%2Fsutas-yarim-yagli-sut-1-litre&psig=AOvVaw1xDw-JiAKzUQlZ33PwVI-K&ust=1595330986772000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiXppnd2-oCFQAAAAAdAAAAABAD",
+    #              "categoryId": "-MCfyFwdqEa0ZyXkN6Y0",
+    #              "supplierId": "-MCfyQ6D1f_wy8aIaQqs"
+    #        }"""
+    # res = HTTP.post(
+    #     "https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app/firebase_test/firebase_post/input.json",
+    #     "",
+    #     body,
+    # )
+    # string = JSON.parse(String(res.body))["name"]
+    # expected = HTTP.get(
+    #     "https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app/firebase_test/firebase_post/input/$(string).json",
+    # )
+    # res = HTTP.put("https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app/firebase_test/firebase_post/input/$(string).json",body)
 
 end

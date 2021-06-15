@@ -1,8 +1,4 @@
-using Base: final_shred!
-using HTTP, JSON, Firebase
-# Firebase Auth  backend a REST API
-
-export readdbinit, readldb_get, realdb_post, realdb_delete, realdb_put
+# Realtime related
 
 Firebase.init("test/fir-jl-457eb-firebase-adminsdk-40928-0efd6a89e7.json");
 
