@@ -1,1 +1,5 @@
 [deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+GoogleCloud = "55e21f81-8b0a-565e-b5ad-6816892a5ee7"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
