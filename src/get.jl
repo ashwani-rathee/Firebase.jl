@@ -37,3 +37,24 @@ function get_collection(documentpath; pagesize = 300)
 end
 
 get_document(documentpath) = get_singlepage(documentpath)
+
+
+const FIRESTORE_URL = "https://firestore.googleapis.com/v1" 
+
+function get(path...)
+    @show "Firestore.get", path
+    full_path = join(path,'/')
+    length(path) % 2 == 0 && return convert_map(get_document(full_path))
+    map(convert_map,get_collection(full_path))
+end
+
+function get_request(path::String)
+    header = Dict(auth_header())
+    project_id = projectid()
+
+    url = "$(FIRESTORE_URL)/projects/$project_id/databases/(default)/documents$path"
+    println(url)
+    http_response = HTTP.get(url,header)
+    response_string = String(http_response.body)
+    JSON.parse(response_string)
+end
