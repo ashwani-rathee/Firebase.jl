@@ -15,7 +15,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        julia-version: ['1.0', '1', 'nightly']
+        julia-version: ['1.4', '1.5', '1.6']
         os: [ubuntu-latest, windows-latest, macOS-latest]
 
     steps:
@@ -37,4 +37,5 @@ jobs:
             ${{ runner.os }}-test-
             ${{ runner.os }}-
       - name: "Unit Test"
+        env: CREDENTIAL: ${{ secrets.FIREBASE_KEY }}
         uses: julia-actions/julia-runtest@master
