@@ -1,10 +1,23 @@
 # Realtime related
-
+using HTTP,JSON
 # Firebase.init("test/fir-jl-457eb-firebase-adminsdk-40928-0efd6a89e7.json");
 
-# BASE_URL = nothing
+BASE_URL = nothing
+
 # BASE_URL = "https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app"
-function realdbinit(base_url; query = Dict())
+
+"""
+realdb_init(base_url; query = Dict())
+
+Initialize the realtimedb with baseurl to make things easier
+
+# Example
+
+```julia
+realdb_init("https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app")
+```
+"""
+function realdb_init(base_url; query=Dict())
     global BASE_URL = base_url
     println("Base Url set:", BASE_URL)
 end
@@ -12,14 +25,22 @@ pagesize = 300
 pagetoken = ""
 
 """
+realdb_get(url; query = Dict())
 
+GET request to an endpoint.
+
+# Example
+```julia
+realdb_init("https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app")
+realdb_get("/users/jack/name")
+```
 
 """
-function realdb_get(url; query = Dict())
+function realdb_get(url; query=Dict())
     final_url = "$BASE_URL$url.json"
     println("FINAL URL:", final_url)
     query = Dict{String,Any}("pageSize" => pagesize, "pageToken" => pagetoken)
-    res = HTTP.get(final_url; query = query)
+    res = HTTP.get(final_url; query=query)
     if res.status == 200
         println("GET successful")
     else
@@ -27,16 +48,40 @@ function realdb_get(url; query = Dict())
     end
     JSON.parse(String(res.body))
 end
-# realdb_get("/users/jack/name")
+
 
 """
+realdb_post(url, body = "{"name": "real_db_test"}"; query = Dict())
+
+POST request to an endpoint.
+
+# Example
+```julia
+realdb_init("https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app")
+# realdb_post("/message_list")
+body =Dict("user_id" => "jack", "text" => "Ahoy!")
+realdb_post("/message_list",body)
+```
+
+## Notes:
+
+According to the REST API documentation for Realtime Database, 
+a POST is the equivalent of a "push" operation when using the client SDKs.
+This push operation always involves adding data under a random ID. 
+There is no avoiding that for a push.
+
+If you know the name of the node where you want to add data,
+you should use a PUT instead. This is the equivalent of using "set"
+operation with the client SDKs.
 
 """
-function realdb_post(url, body = """{"name": "real_db_test"}"""; query = Dict())
+function realdb_post(url, body=Dict("name" => "real_db_test"); query=Dict())
     final_url = "$BASE_URL$url.json"
     println("FINAL URL:", final_url)
+    body = JSON.json(body)
+    println("Body:", body)
     query = Dict{String,Any}("pageSize" => pagesize, "pageToken" => pagetoken)
-    res = HTTP.post(final_url, "", body; query = query)
+    res = HTTP.post(final_url, "", body; query=query)
     if res.status == 200
         println("POST successful")
     else
@@ -44,17 +89,27 @@ function realdb_post(url, body = """{"name": "real_db_test"}"""; query = Dict())
     end
     JSON.parse(String(res.body))
 end
-# body ="""{"user_id" : "jack", "text" : "Ahoy!"}"""
-# realdb_post("/message_list",body)
+
 
 """
+realdb_patch(url, body = Dict("name"=> "real_db_test"); query = Dict())
 
+`PATCH` request to an endpoint.
+
+# Example
+```julia
+realdb_init("https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app")
+body =Dict("last"=>"Jones")
+realdb_patch("/users/jack/name/",body)
+```
 """
-function realdb_patch(url, body = """{"name": "real_db_test"}"""; query = Dict())
+function realdb_patch(url, body=Dict("name" => "real_db_test"); query=Dict())
     final_url = "$BASE_URL$url.json"
     println("FINAL URL:", final_url)
     query = Dict{String,Any}("pageSize" => pagesize, "pageToken" => pagetoken)
-    res = HTTP.patch(final_url, "", body; query = query)
+    body = JSON.json(body)
+    println("Body:", body)
+    res = HTTP.patch(final_url, "", body; query=query)
     if res.status == 200
         println("PATCH successful")
     else
@@ -62,18 +117,25 @@ function realdb_patch(url, body = """{"name": "real_db_test"}"""; query = Dict()
     end
     JSON.parse(String(res.body))
 end
-# body ="""{"last":"Jones"}"""
-# realdb_patch("/users/jack/name/",body)
 
 """
+realdb_delete(url, body = Dict("name"=> "real_db_test"); query = Dict())
 
+`DELETE` request to an endpoint
 
+# Example
+```julia
+realdb_init("https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app")
+realdb_delete("/users/jack/name/last")
+```
 """
-function realdb_delete(url, body = """{"name": "real_db_test"}"""; query = Dict())
+function realdb_delete(url, body=Dict("name" => "real_db_test"); query=Dict())
     final_url = "$BASE_URL$url.json"
     println("FINAL URL:", final_url)
     query = Dict{String,Any}("pageSize" => pagesize, "pageToken" => pagetoken)
-    res = HTTP.delete(final_url, "", body; query = query)
+    body = JSON.json(body)
+    println("Body:", body)
+    res = HTTP.delete(final_url, "", body; query=query)
     if res.status == 200
         println("DELETE successful")
     else
@@ -81,15 +143,27 @@ function realdb_delete(url, body = """{"name": "real_db_test"}"""; query = Dict(
     end
     JSON.parse(String(res.body))
 end
-# realdb_delete("/users/jack/name/last")
-"""
 
 """
-function realdb_put(url, body = """{"name": "real_db_test"}"""; query = Dict())
+realdb_put(url, body = Dict("name"=> "real_db_test"); query = Dict())
+
+`PUT` request to a endpoint.
+
+# Example
+
+```julia
+realdb_init("https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app")
+body = Dict("first"=>"Ash", "last"=>"Sparrow")
+realdb_put("/users/jack/name",body)
+```
+"""
+function realdb_put(url, body=Dict("name" => "real_db_test"); query=Dict())
     final_url = "$BASE_URL$url.json"
     println("FINAL URL:", final_url)
     query = Dict{String,Any}("pageSize" => pagesize, "pageToken" => pagetoken)
-    res = HTTP.put(final_url, "", body; query = query)
+    body = JSON.json(body)
+    println("Body:", body)
+    res = HTTP.put(final_url, "", body; query=query)
     if res.status == 200
         println("PUT successful")
     else
@@ -97,18 +171,23 @@ function realdb_put(url, body = """{"name": "real_db_test"}"""; query = Dict())
     end
     JSON.parse(String(res.body))
 end
-# body = """{ "first": "Ash", "last": "Sparrow" }"""
-# println(typeof(body))
-# realdb_put("/users/jack/name",body)
 
 """
+readdb_download(url, filename = "test"; query = Dict())
 
+Download request
+
+# Example
+
+```julia
+
+```
 """
-function readdb_download(url, filename = "$url"; query = Dict())
+function readdb_download(url, filename="test"; query=Dict())
     final_url = "$BASE_URL$url.json?download=$filename.txt"
     println("FINAL URL:", final_url)
     query = Dict{String,Any}("pageSize" => pagesize, "pageToken" => pagetoken)
-    res = HTTP.get(final_url; query = query)
+    res = HTTP.get(final_url; query=query)
     if res.status == 200
         println("GET successful")
     else

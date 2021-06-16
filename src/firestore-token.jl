@@ -1,14 +1,11 @@
 using GoogleCloud
 
-CREDENTIALS = ENV["CREDENTIALS"]
-export init,projectid,get_token,auth_header
-
+const FIRESTORE_URL = "https://firestore.googleapis.com/v1"
 
 function init(filepath)
     global CREDENTIALS
     CREDENTIALS = JSONCredentials(filepath)
     println(CREDENTIALS)
-    println("Hello")
 end
 
 function projectid()
