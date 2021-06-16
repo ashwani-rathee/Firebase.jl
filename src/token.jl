@@ -25,6 +25,7 @@ function get_token()
 end
 
 function auth_header()
+    println(CREDENTIALS)
     token = get_token()
     "Authorization" => "$(token[:token_type]) $(token[:access_token])"
 end
