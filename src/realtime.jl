@@ -1,20 +1,25 @@
 # Realtime related
 
-Firebase.init("test/fir-jl-457eb-firebase-adminsdk-40928-0efd6a89e7.json");
+# Firebase.init("test/fir-jl-457eb-firebase-adminsdk-40928-0efd6a89e7.json");
 
-BASE_URL = nothing
-
-function realdbinit(base_url)
+# BASE_URL = nothing
+# BASE_URL = "https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app"
+function realdbinit(base_url; query = Dict())
     global BASE_URL = base_url
     println("Base Url set:", BASE_URL)
-    # BASE_URL = "https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app/"
 end
+pagesize = 300
+pagetoken = ""
 
-function realdb_get(url)
-    # println(BASE_URL)
+"""
+
+
+"""
+function realdb_get(url; query = Dict())
     final_url = "$BASE_URL$url.json"
     println("FINAL URL:", final_url)
-    res = HTTP.get(final_url)
+    query = Dict{String,Any}("pageSize" => pagesize, "pageToken" => pagetoken)
+    res = HTTP.get(final_url; query = query)
     if res.status == 200
         println("GET successful")
     else
@@ -22,11 +27,16 @@ function realdb_get(url)
     end
     JSON.parse(String(res.body))
 end
+# realdb_get("/users/jack/name")
 
-function realdb_post(url, body = """{"name": "real_db_test"}""")
+"""
+
+"""
+function realdb_post(url, body = """{"name": "real_db_test"}"""; query = Dict())
     final_url = "$BASE_URL$url.json"
     println("FINAL URL:", final_url)
-    res = HTTP.post(final_url, "", body)
+    query = Dict{String,Any}("pageSize" => pagesize, "pageToken" => pagetoken)
+    res = HTTP.post(final_url, "", body; query = query)
     if res.status == 200
         println("POST successful")
     else
@@ -34,11 +44,36 @@ function realdb_post(url, body = """{"name": "real_db_test"}""")
     end
     JSON.parse(String(res.body))
 end
+# body ="""{"user_id" : "jack", "text" : "Ahoy!"}"""
+# realdb_post("/message_list",body)
 
-function realdb_delete(url, body = """{"name": "real_db_test"}""")
+"""
+
+"""
+function realdb_patch(url, body = """{"name": "real_db_test"}"""; query = Dict())
     final_url = "$BASE_URL$url.json"
     println("FINAL URL:", final_url)
-    res = HTTP.delete(final_url, "", body)
+    query = Dict{String,Any}("pageSize" => pagesize, "pageToken" => pagetoken)
+    res = HTTP.patch(final_url, "", body; query = query)
+    if res.status == 200
+        println("PATCH successful")
+    else
+        println("PATCH errored")
+    end
+    JSON.parse(String(res.body))
+end
+# body ="""{"last":"Jones"}"""
+# realdb_patch("/users/jack/name/",body)
+
+"""
+
+
+"""
+function realdb_delete(url, body = """{"name": "real_db_test"}"""; query = Dict())
+    final_url = "$BASE_URL$url.json"
+    println("FINAL URL:", final_url)
+    query = Dict{String,Any}("pageSize" => pagesize, "pageToken" => pagetoken)
+    res = HTTP.delete(final_url, "", body; query = query)
     if res.status == 200
         println("DELETE successful")
     else
@@ -46,11 +81,15 @@ function realdb_delete(url, body = """{"name": "real_db_test"}""")
     end
     JSON.parse(String(res.body))
 end
+# realdb_delete("/users/jack/name/last")
+"""
 
-function realdb_put(url, body = """{"name": "real_db_test"}""")
+"""
+function realdb_put(url, body = """{"name": "real_db_test"}"""; query = Dict())
     final_url = "$BASE_URL$url.json"
     println("FINAL URL:", final_url)
-    res = HTTP.put(final_url, body)
+    query = Dict{String,Any}("pageSize" => pagesize, "pageToken" => pagetoken)
+    res = HTTP.put(final_url, "", body; query = query)
     if res.status == 200
         println("PUT successful")
     else
@@ -58,12 +97,18 @@ function realdb_put(url, body = """{"name": "real_db_test"}""")
     end
     JSON.parse(String(res.body))
 end
+# body = """{ "first": "Ash", "last": "Sparrow" }"""
+# println(typeof(body))
+# realdb_put("/users/jack/name",body)
 
-# 'https://[PROJECT_ID].firebaseio/.json?download=myfilename.txt'
-function readdb_download(url, filename = "$url")
+"""
+
+"""
+function readdb_download(url, filename = "$url"; query = Dict())
     final_url = "$BASE_URL$url.json?download=$filename.txt"
     println("FINAL URL:", final_url)
-    res = HTTP.get(final_url)
+    query = Dict{String,Any}("pageSize" => pagesize, "pageToken" => pagetoken)
+    res = HTTP.get(final_url; query = query)
     if res.status == 200
         println("GET successful")
     else
@@ -71,35 +116,3 @@ function readdb_download(url, filename = "$url")
     end
     JSON.parse(String(res.body))
 end
-# header = Dict(
-#     "Authorization" =>
-#         "Bearer ya29.c.Kp8BAwh19dsnHN7yPkhlb3toQleIQuAQ94YlV-aXs6ijDEvEKtvKmoNiXw9Fg7u-EjpHjusuu_k9nIaW7tFohhW97fPTx7G0KowT-R0nwI52XdvHrG-TrRAZOjC38eiu_eaPgXTh2wxHUDH-sVPpvA5Yzv8DgCoCRTUboxa3ajDVhRiyvM7uOiFcR27k6eoMrOmk_EBTabpODRLhtIeKG10O",
-# );
-# body = """
-# {
-#   "provider": "anonymous",
-#   "uid": "e8e345bd-ca8d-40c7-9dfd-3c1d5630bc14"
-# }
-# """
-# {
-#   "rules": {
-#     ".read": "auth == null",
-#     ".write": "auth == null"
-#   }
-# }
-# res = HTTP.get("https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app/firebase_test/firebase_get.json")
-# data = res.status
-# string = JSON.parse(String(res.body))
-# body =
-# """
-# {
-#       "name": "Sutas Yarim Yagli Sut",
-#       "orderAmount": 1220,
-#       "price": "7.5 TL",
-#       "stockAmount": 350,
-#       "img": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.idagross.com%2Fsutas-yarim-yagli-sut-1-litre&psig=AOvVaw1xDw-JiAKzUQlZ33PwVI-K&ust=1595330986772000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPiXppnd2-oCFQAAAAAdAAAAABAD",
-#       "categoryId": "-MCfyFwdqEa0ZyXkN6Y0",
-#       "supplierId": "-MCfyQ6D1f_wy8aIaQqs"
-# }"""
-
-# res = HTTP.post("https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.app/firebase_test/firebase_get.json","" ,body)

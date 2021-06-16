@@ -1,10 +1,4 @@
-using JSON, HTTP
-
-export firestore_batchget
-export firestore_createdoc
-export firestore_deletedoc
-export firestore_getcollectionids
-export firestore_getdoclist
+#
 
 const FIRESTORE_URL = "https://firestore.googleapis.com/v1"
 
