@@ -1,6 +1,6 @@
 using GoogleCloud
 
-CREDENTIALS = nothing
+CREDENTIALS = ENV["CREDENTIALS"]
 export init,projectid,get_token,auth_header
 
 
@@ -25,6 +25,7 @@ function get_token()
 end
 
 function auth_header()
+    println(CREDENTIALS)
     token = get_token()
     "Authorization" => "$(token[:token_type]) $(token[:access_token])"
 end
