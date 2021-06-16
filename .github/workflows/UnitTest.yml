@@ -37,5 +37,6 @@ jobs:
             ${{ runner.os }}-test-
             ${{ runner.os }}-
       - name: "Unit Test"
-        env: CREDENTIAL: ${{ secrets.FIREBASE_KEY }}
+        env: 
+            CREDENTIAL: ${{ secrets.FIREBASE_KEY }}
         uses: julia-actions/julia-runtest@master
