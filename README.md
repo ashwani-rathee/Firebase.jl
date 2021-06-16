@@ -5,7 +5,7 @@
 
 ```julia
 using Pkg
-Pkg.clone("git://example.com/path/to/Package.jl.git")
+Pkg.clone("github.com/ashwani-rathee/Firebase.jl.git")
 ```
 
 # TODO
