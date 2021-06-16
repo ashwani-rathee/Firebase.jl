@@ -1,6 +1,6 @@
 using GoogleCloud
 
-CREDENTIALS = nothing
+CREDENTIALS = ENV["CREDENTIALS"]
 export init,projectid,get_token,auth_header
 
 
