@@ -8,4 +8,4 @@ makedocs(sitename="Documentation",
             format = Documenter.HTML(
                 prettyurls = Base.get(ENV, "CI", nothing) == "true"
             ))
-deploydocs(repo = "github.com/ashwani-rathee/Firebase.jl")
+deploydocs(repo = "github.com/ashwani-rathee/Firebase.jl", push_preview    = true)
