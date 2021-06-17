@@ -28,7 +28,7 @@ end
 function convert_timestamp(x)
     ix = findlast('.', x)
     isnothing(ix) && (ix = findlast('Z', x))
-    y = isnothing(ix) ? x : x[1:ix-1]
+    y = isnothing(ix) ? x : x[1:ix - 1]
     DateTime(y, dateformat"yyyy-mm-ddTHH:MM:SS")
 end
 
