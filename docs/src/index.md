@@ -1,5 +1,9 @@
 # Firebase.jl : Julia Firebase
 
+```@meta
+CurrentModule = Firebase
+```
+
 Julia's Interface to Firebase REST API
 
 # Installation
@@ -89,6 +93,14 @@ FINAL URL: "https://fir-jl-457eb-default-rtdb.asia-southeast1.firebasedatabase.a
 PUT successful
 Dict{String, Any} with 1 entry:
   "name" => "-McElRx3ZBP-l7pCF0LN"
+```
+
+
+```@index
+```
+
+```@autodocs
+Modules = [Firebase]
 ```
 
 # Reference

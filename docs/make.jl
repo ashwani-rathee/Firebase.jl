@@ -7,7 +7,7 @@ DocMeta.setdocmeta!(Firebase, :DocTestSetup, :(using Firebase); recursive=true)
 
 makedocs(;
     modules=[Firebase],
-    authors="Panquesito7",
+    authors="Ashwani Rathee",
     repo="github.com/ashwani-rathee/Firebase.jl/blob/{commit}{path}#{line}",
     sitename="Firebase.jl",
     format=Documenter.HTML(;
