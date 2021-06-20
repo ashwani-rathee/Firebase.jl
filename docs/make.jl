@@ -22,4 +22,5 @@ makedocs(;
 deploydocs(;
     repo="github.com/ashwani-rathee/Firebase.jl",
     devbranch="main",
+    push_preview = true
 )
