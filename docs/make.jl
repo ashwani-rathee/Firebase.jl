@@ -10,7 +10,7 @@ makedocs(;
     repo="github.com/ashwani-rathee/Firebase.jl/blob/{commit}{path}#{line}",
     sitename="Firebase.jl",
     format=Documenter.HTML(;
-        prettyurls=Main.get(ENV, "CI", "false") == "true",
+        prettyurls=Base.get(ENV, "CI", "false") == "true",
         canonical="https://ashwani-rathee.github.io/Firebase.jl",
         assets=String[],
     ),
