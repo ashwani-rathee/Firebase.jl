@@ -50,7 +50,7 @@ get_request(url::String)
 
 # Example
 ```julia
-init("fir-jl-457eb-firebase-adminsdk-40928-0efd6a89e7.json")
+init("[FIREBASE_ADMIN_SDK].json")
 res = get_request("/firebase_test/firebase_get") # document get
 res = get_request("/firebase_test/firebase_get/firebase_get_collection") # collection fetch
 ```
@@ -92,7 +92,7 @@ to be returned in the same order that they were requested.
 
 # Example
 ```julia
-init("[FIREBASE_ADMIN_SK].json")
+init("[FIREBASE_ADMIN_SDK].json")
 res = firestore_batchget()
 ```
 """
@@ -159,7 +159,7 @@ If you require an atomically applied set of writes, use documents.commit instead
 
 # Example
 ```julia
-init("[FIREBASE_ADMIN_SK].json")
+init("[FIREBASE_ADMIN_SDK].json")
 res = firestore_batchwrite()
 ```
 """
@@ -196,7 +196,7 @@ The options for the transaction. Defaults to a read-write transaction.
 
 # Example
 ```julia
-init("[FIREBASE_ADMIN_SK].json")
+init("[FIREBASE_ADMIN_SDK].json")
 firestore_beginTransaction()
 ```
 """
@@ -252,7 +252,7 @@ Commits a transaction, while optionally updating documents.
 
 # Example
 ```julia
-init("[FIREBASE_ADMIN_SK].json")
+init("[FIREBASE_ADMIN_SDK].json")
 data = firestore_beginTransaction()
 firestore_commit(data["transaction"])
 ```
@@ -303,7 +303,7 @@ firestore_createdoc(url, body)
 # Example
 
 ```julia
-init("[FIREBASE_ADMIN_SK].json")
+init("[FIREBASE_ADMIN_SDK].json")
 firestore_createdoc("/firebase_test/firebase_post/two") 
 firestore_createdoc("/firebase_test/firebase_post/three";query ="hello") # with document id name in query
 ```
@@ -337,7 +337,7 @@ Deletes a document
 
 # Example
 ```julia
-init("[FIREBASE_ADMIN_SK].json")
+init("[FIREBASE_ADMIN_SDK].json")
 firestore_createdoc("/firebase_test/firebase_post/three";query ="hello") # creates the document and then we delete it
 firestore_deletedoc("/firebase_test/firebase_post/three/hello")
 ```
@@ -362,7 +362,7 @@ Lists documents
 
 # Example
 ```julia
-init("[FIREBASE_ADMIN_SK].json")
+init("[FIREBASE_ADMIN_SDK].json")
 firestore_getdoclist("/firebase_test")
 ```
 """
@@ -387,7 +387,7 @@ Lists all the collection IDs underneath a document.
 
 # Example
 ```julia
-init("[FIREBASE_ADMIN_SK].json")
+init("[FIREBASE_ADMIN_SDK].json")
 firestore_getcollectionids("/firebase_test/firebase_post")
 ```
 """
@@ -473,7 +473,7 @@ Updates or inserts a document.
 # Example
 
 ```julia
-init("[FIREBASE_ADMIN_SK].json")
+init("[FIREBASE_ADMIN_SDK].json")
 firestore_patch("/firebase_test/firebase_patch")
 ```
 """
@@ -505,7 +505,7 @@ Rolls back a transaction.
 # Example
 
 ```julia
-init("[FIREBASE_ADMIN_SK].json")
+init("[FIREBASE_ADMIN_SDK].json")
 data = firestore_beginTransaction()
 # firestore_commit(data["transaction"])
 firestore_rollback(data["transaction"])
@@ -571,7 +571,7 @@ Runs a query.
 
 # Example
 ```julia
-init("[FIREBASE_ADMIN_SK].json")
+init("[FIREBASE_ADMIN_SDK].json")
 firestore_runquery("/firebase_test/firebase_post")
 ```
 """
