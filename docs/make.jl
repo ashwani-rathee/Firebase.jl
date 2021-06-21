@@ -19,9 +19,9 @@ makedocs(;
         "Home" => "index.md",
         "Cloud Firestore" => "firestore.md",
         "Cloud Authentication" => "authentication.md",
-        "Realtime Database" => "realtime.md"
+        "Realtime Database" => "realtime.md",
         "Cloud Storage" => "storage.md",
-        "Utility Functions" => "utility.md"
+        "Utility Functions" => "utility.md",
     ],
 )
 
