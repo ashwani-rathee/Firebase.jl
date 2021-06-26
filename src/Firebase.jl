@@ -68,5 +68,7 @@ export realdb_put
 export realdb_patch
 
 # cloud Storage Functions
+export cloudstore_init
+export cloudstore_get
 export cloudstore_sendfile
 end # module
