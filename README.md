@@ -1,10 +1,13 @@
 # Firebase.jl : Julia Firebase
-
+![](https://i.imgur.com/wQ8boAw.png)
 | **Documentation** | **Build Status** | **Information** |
 |:-:|:-:|:-:|
 | [![Docs](https://img.shields.io/badge/docs-dev-blue.svg)](https://ashwani-rathee.github.io/Firebase.jl/dev/) | [![Build Status](https://travis-ci.com/Xh4H/Discord.jl.svg?branch=master)](https://travis-ci.com/Xh4H/Discord.jl) | [![Discord](https://img.shields.io/badge/discord-join-7289da.svg)](https://discord.gg/5vAJyZsS) [![License](https://img.shields.io/github/license/Xh4H/Discord.jl.svg)](https://github.com/ashwani-rathee/Firebase.jl/blob/main/LICENSE) |
 
 Firebase.jl is the solution for working with [Firebase](https://firebase.google.com/) with the [Julia programming language](https://julialang.org).
+
+## Notes:
+>Firebase isn't endorsing this project and hasn't built this project. So use it at your own discretion and risk. 
 
 # Installation
 
