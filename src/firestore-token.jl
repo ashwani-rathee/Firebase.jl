@@ -1,6 +1,6 @@
 using GoogleCloud
 using Glob
-import REPL
+using REPL
 using REPL.TerminalMenus
 
 const FIRESTORE_URL = "https://firestore.googleapis.com/v1"
