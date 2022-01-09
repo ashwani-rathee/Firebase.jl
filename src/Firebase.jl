@@ -7,12 +7,14 @@ include("firebaseauth.jl")
 include("convert.jl")
 include("cloudstorage.jl")
 include("realtime.jl")
-# include("auth.jl")
 
-# Imported packages
-using HTTP, GoogleCloud, JSON
+# Imports
+using HTTP
+using GoogleCloud
+using JSON
+using Glob
 
-# Exported Functions
+# Utils
 export get
 export get_collection, get_singlepage,get_document, get_request
 export convert_to_dict
@@ -21,7 +23,7 @@ export convert_timestamp
 export convert_map
 export convert_array
 
-# Firebase authentication related
+# Firebase Authentication related
 export set_webapikey
 export firebase_signup
 export firebase_signin
@@ -41,7 +43,7 @@ export firebase_verifyemail
 export firebase_confirmemailverify
 export firebase_deleteuser
 
-# Firebase database related
+# Cloud Firestore
 export init
 export projectid
 export get_token
@@ -59,7 +61,7 @@ export firestore_patch
 export firestore_rollback
 export firestore_runquery
 
-# Realtime database related
+# Realtime Database
 export realdb_init
 export realdb_get
 export realdb_post
@@ -67,8 +69,10 @@ export realdb_delete
 export realdb_put
 export realdb_patch
 
-# cloud Storage Functions
+# Cloud Storage
 export cloudstore_init
 export cloudstore_get
 export cloudstore_sendfile
+
+
 end # module

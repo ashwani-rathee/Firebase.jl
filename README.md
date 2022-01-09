@@ -21,8 +21,7 @@ Dev Version
 ```julia
 using Pkg
 # Enter ']' from the REPL to enter Pkg mode.
-pkg> add https://github.com/Xh4H/Discord.jl
-
+pkg> add https://github.com/ashwani-rathee/Firebase.jl.git
 ```
 
 
@@ -32,7 +31,26 @@ To fetch a document
 ```julia
 using Firebase
 
-init("[FIREBASE_ADMIN_SDK].json")
+Firebase.init("[FIREBASE_ADMIN_SDK].json") # just init() works too
+
+# if you have multiple sdk key files, in your project make a firebase folder and put all key in that folder
+Firebase.init()
+```
+
+Firebase.init() will look something like this:
+```
+julia> Firebase.init()
+Choose your admin sdk key for use:
+   firebase/2.json
+ > firebase/fir-jl-457eb-firebase-adminsdk-40928-b1054bfad0.json
+Project Admin SDK key is firebase/fir-jl-457eb-firebase-adminsdk-40928-b1054bfad0.json now!!
+project_id: fir-jl-457eb
+client_email: firebase-adminsdk-40928@fir-jl-457eb.iam.gserviceaccount.com
+```
+
+To get document or a collection:
+
+```julia
 res = get_request("/firebase_test/firebase_get") # document get
 res = get_request("/firebase_test/firebase_get/firebase_get_collection") # collection fetch
 ```

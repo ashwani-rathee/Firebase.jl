@@ -26,3 +26,4 @@ Manifest.toml
 # test/fir-jl-457eb-firebase-adminsdk-40928-0efd6a89e7.json
 src/study.jl
 src/study2.jl
+firebase/
