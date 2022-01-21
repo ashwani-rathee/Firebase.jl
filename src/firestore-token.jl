@@ -5,7 +5,77 @@ using REPL.TerminalMenus
 
 const FIRESTORE_URL = "https://firestore.googleapis.com/v1"
 
-function init(filepath)
+"""
+    initparsedjson( parsedjson)
+
+initialize if the sdk key is in parsed JSON format and the file is saved as adminsdkkey.json
+
+## Example
+
+```md
+julia> r = HTTP.get(BASE_URL, header); # returns a response with header and body
+HTTP.Messages.Response
+
+julia> response = JSON.json(JSON.parse(String(r.body)))
+"{\"client_email\":\"****\",\"client_id\":\"****\",\"auth_uri\":\"https://accounts.google.com/o/oauth2/auth\",\"auth_provider_x509_cert_url\":\"https://www.googleapis.com/oauth2/v1/certs\",\"token_uri\":\"https://oauth2.googleapis.com/token\",\"client_x509_cert_url\":\"https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-jk50g%40volka-bot.iam.gserviceaccount.com\",\"project_id\":\"volka-bot\",\"type\":\"service_account\",\"private_key\":\"****\",\"private_key_id\":\"****\"}"
+
+julia> initparsedjson( response)
+Project Admin SDK key is adminsdkkey.json now!!
+project_id: ****
+client_email: ****
+````
+"""
+function initparsedjson( parsedjson)
+    global CREDENTIALS
+    open("adminsdkkey.json","w") do f 
+        write(f, parsedjson) 
+    end
+    CREDENTIALS = JSONCredentials("adminsdkkey.json")
+    println("Project Admin SDK key is adminsdkkey.json now!!")
+    println(CREDENTIALS)
+end
+
+"""
+    init( julianparseddict::Dict)
+
+Initialize if the sdk key is in Julian dict format and the file is saved as adminsdkkey.json
+
+## Example
+
+```md
+julia> r = HTTP.get(BASE_URL, header); # returns a response with header and body
+HTTP.Messages.Response
+
+julia> response = JSON.parse(String(r.body))
+Dict{String, Any} with 10 entries:
+  "client_email"                => "****"
+  "client_id"                   => "****"
+  "auth_uri"                    => "https://accounts.google.com/o/oauth2/auth"
+  "auth_provider_x509_cert_url" => "https://www.googleapis.com/oauth2/v1/certs"
+  "token_uri"                   => "https://oauth2.googleapis.com/token"
+  "client_x509_cert_url"        => "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-jk50g%40volka-bot.iam.gserviceaccount.com"
+  "project_id"                  => "****"
+  "type"                        => "service_account"
+  "private_key"                 => "****"
+  "private_key_id"              => "****"
+
+julia> init(response)
+Project Admin SDK key is adminsdkkey.json now!!
+project_id: ****
+client_email: ****
+````
+"""
+function init( julianparseddict::Dict)
+    global CREDENTIALS
+    open("adminsdkkey.json","w") do f 
+        write(f, JSON.json(julianparseddict)) 
+    end
+    CREDENTIALS = JSONCredentials("adminsdkkey.json")
+    println("Project Admin SDK key is adminsdkkey.json now!!")
+    println(CREDENTIALS)
+end
+
+function init( filepath)
     global CREDENTIALS
     CREDENTIALS = JSONCredentials(filepath)
     println("Project Admin SDK key is ", filepath, " now!!")

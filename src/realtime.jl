@@ -78,7 +78,7 @@ you should use a PUT instead. This is the equivalent of using "set"
 operation with the client SDKs.
 
 """
-function realdb_post(url, , authheader = "", body = Dict("name" => "real_db_test"); query = Dict())
+function realdb_post(url, authheader = "", body = Dict("name" => "real_db_test"); query = Dict())
     pagesize = 300
     pagetoken = ""
     final_url = "$BASE_URL$url.json"

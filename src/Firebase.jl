@@ -45,6 +45,7 @@ export firebase_deleteuser
 
 # Cloud Firestore
 export init
+export initparsedjson
 export projectid
 export get_token
 export auth_header
