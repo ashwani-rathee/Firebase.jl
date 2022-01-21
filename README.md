@@ -119,6 +119,10 @@ Dict{String, Any} with 1 entry:
   "name" => "-McElRx3ZBP-l7pCF0LN"
 ```
 
+## Projects using this project
+
+- [Volka-bot](https://github.com/ashwani-rathee/volka-bot.jl) - Bot provides various features like roles setup, rule embed setup, most importantly the ability to track the changes(commits) in github projects, new video releases on youtube and new blog posts after they have been subscribed in the server. To track the changes in the bot, bot check hourly for updates. Multiple git repos, youtube channels and blog subscriptions can be tracked.
+
 ## Reference
 
 For further examples, guides and reference please refer to the documentation linked above.
